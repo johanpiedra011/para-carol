@@ -1,184 +1,207 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Para Carol</title>
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2764.png" />
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link
+      rel="icon"
+      href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2764.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        /* --- Estilos de la Carta (Máquina de escribir) --- */
-        .typewriter-container {
-            max-width: 600px;
-            margin: 30px auto;
-            min-height: 100px; /* Evita que el contenido salte al escribir */
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            border-left: 2px solid #ef4444;
-            backdrop-filter: blur(5px);
-            text-align: left;
-        }
+      /* --- Estilos de la Carta (Máquina de escribir) --- */
+      .typewriter-container {
+        max-width: 600px;
+        margin: 30px auto;
+        min-height: 100px; /* Evita que el contenido salte al escribir */
+        padding: 25px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 20px;
+        border-left: 2px solid #ef4444;
+        backdrop-filter: blur(5px);
+        text-align: left;
+      }
 
-        #carta-escrita {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: #f1f5f9;
-            font-style: italic;
-            display: inline;
-        }
+      #carta-escrita {
+        font-family: "Inter", sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #f1f5f9;
+        font-style: italic;
+        display: inline;
+      }
 
-        .cursor {
-            font-size: 1.2rem;
-            color: #ef4444;
-            font-weight: bold;
-            animation: parpadeo 0.8s infinite;
-        }
+      .cursor {
+        font-size: 1.2rem;
+        color: #ef4444;
+        font-weight: bold;
+        animation: parpadeo 0.8s infinite;
+      }
 
-        @keyframes parpadeo {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+      @keyframes parpadeo {
+        0%,
+        100% {
+          opacity: 1;
         }
+        50% {
+          opacity: 0;
+        }
+      }
 
-        /* --- Estilos para la sección final del contador --- */
-        .final-seccion {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, transparent, rgba(239, 68, 68, 0.05));
-        }
+      /* --- Estilos para la sección final del contador --- */
+      .final-seccion {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(239, 68, 68, 0.05)
+        );
+      }
 
-        .contador-intro {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            font-size: 1rem;
-            color: #94a3b8;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
+      .contador-intro {
+        font-family: "Inter", sans-serif;
+        font-weight: 300;
+        font-size: 1rem;
+        color: #94a3b8;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
 
-        #contador {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 0 auto 40px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            max-width: fit-content;
-        }
+      #contador {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 0 auto 40px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        max-width: fit-content;
+      }
 
-        .contador-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 60px;
-        }
+      .contador-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 60px;
+      }
 
-        .contador-numero {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #ef4444;
-            text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
-        }
+      .contador-numero {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #ef4444;
+        text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+      }
 
-        .contador-etiqueta {
-            font-size: 0.7rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-            opacity: 0.8;
-        }
+      .contador-etiqueta {
+        font-size: 0.7rem;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 5px;
+        opacity: 0.8;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <audio id="musica" loop preload="auto">
-        <source src="musica.mp3" type="audio/mpeg">
+      <source src="musica.mp3" type="audio/mpeg" />
     </audio>
 
     <header>
-        <div class="header-content">
-            <h1>Me encantas Carol...</h1>
-            <p class="subtitle">Un pequeño detalle, para toda la vida</p>
-            
-            <div class="typewriter-container">
-                <p id="carta-escrita"></p>
-                <span class="cursor">|</span>
-            </div>
+      <div class="header-content">
+        <h1>Me encantas Carol...</h1>
+        <p class="subtitle">Un pequeño detalle, para toda la vida</p>
 
-            <div class="divider"></div>
-            <p class="scroll-hint">Toca cualquier parte y desliza para recordar... ↓</p>
+        <div class="typewriter-container">
+          <p id="carta-escrita"></p>
+          <span class="cursor">|</span>
         </div>
+
+        <div class="divider"></div>
+        <p class="scroll-hint">
+          Toca cualquier parte y desliza para recordar... ↓
+        </p>
+      </div>
     </header>
 
     <div class="timeline" id="galeria"></div>
 
     <section class="final-seccion">
-        <p class="contador-intro">Cada segundo de nuestra historia desde aquel 21 de noviembre...</p>
-        <div id="contador"></div>
+      <p class="contador-intro">
+        Cada segundo de nuestra historia desde aquel 21 de noviembre...
+      </p>
+      <div id="contador"></div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <p class="final-msg">Te deseo lo mejor en cada paso que des.</p>
-            <p class="signature">Con cariño, Johan</p>
-        </div>
+      <div class="footer-content">
+        <p class="final-msg">Te deseo lo mejor en cada paso que des.</p>
+        <p class="signature">Con cariño, Johan</p>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
     <script>
-        const galeria = document.getElementById("galeria");
-        const totalFotos = 116; 
-        const track = document.getElementById('musica');
+      const galeria = document.getElementById("galeria");
+      const totalFotos = 116;
+      const track = document.getElementById("musica");
 
-        /* --- LÓGICA DE LA CARTA (Máquina de escribir) --- */
-        const textoCarta = "Carol, desde aquel 21 de noviembre de 2022 mi vida tomó un rumbo maravilloso. \n\nCada día a tu lado ha sido un regalo y este pequeño código es solo una mínima parte de todo lo que significas para mí. Gracias por ser mi lugar seguro...";
-        const elementoTexto = document.getElementById("carta-escrita");
-        let indice = 0;
+      /* --- LÓGICA DE LA CARTA (Máquina de escribir) --- */
+      const textoCarta =
+        "Hola Carol...\n\nTe agradezco profundamente por recibir este pequeño detalle; sé que no es gran cosa y que recibirás cosas mejores, pero lo hice con todo el amor que te tengo. Primero quiero enfocarme en ti: espero que estés pasando un feliz cumpleaños. No sé si soy el indicado para decirlo, pero estoy muy orgulloso de la persona que eres, de tu carácter y tu personalidad. Le agradezco a Dios que, en algún momento, tuve el privilegio de tenerte como pareja.\n\nAcepto que en el pasado no supe estar a la altura de lo que merecías. Cometí errores que hoy, con más calma, veo con claridad. He dedicado cada día de este tiempo a trabajar en mi interior, a sanar y a convertirme en el hombre que hoy te habla con el corazón abierto.\n\nEntiendo que los momentos difíciles que he pasado últimamente son la cosecha de lo que sembré en el pasado; por eso, valoro tanto que me dediques tiempo, ya sea visitándome o hablando por chat. Eres la mujer que marcó un antes y un después en mi vida. No sé si el destino nos volverá a unir, pero estoy seguro de que jamás volveré a enamorarme así. Es difícil que alguien te ame más que yo; si fuera necesario, daría mi vida por ti.\n\nPasaron 8 meses sin saber de ti y me haces falta. Estar contigo era maravilloso, pero ¿sabes qué es mejor? Reencontrarnos después de tanto tiempo y sentir la misma conexión de nuestros mejores días.\n\nNo puedo escribir todo lo que me gustaría, esto no es ni la mitad. No quiero repetir promesas vacías de que te dejaré tranquila, porque siempre termino buscándote. Pero esta vez, voy a pensar antes de actuar. No sé si habrá una próxima vez, pero siempre estaré aquí para lo que necesites.\n\nTrataré de mentalizarme en que ya nada será igual; creo que es el tiempo justo de dejarte tranquila, pues ya me has aguantado mucho. No es por drama, es para que cuando te dé tu espacio sepas que no es por alguien más: estoy tan ciegamente enamorado de ti que no puedo pensar en nadie más.\n\nEspero que tengamos la oportunidad de hablar en persona; sería la mejor manera de cerrar esta linda historia. Me tomó tiempo entender que el amor no solo se demuestra estando, sino también sabiendo cuándo irse.\n\nAtt: El chico que más te ama en este universo...";
+      const elementoTexto = document.getElementById("carta-escrita");
+      let indice = 0;
 
-        function escribirCarta() {
-            if (indice < textoCarta.length) {
-                if (textoCarta.charAt(indice) === "\n") {
-                    elementoTexto.innerHTML += "<br>";
-                } else {
-                    elementoTexto.innerHTML += textoCarta.charAt(indice);
-                }
-                indice++;
-                setTimeout(escribirCarta, 50); // Velocidad de escritura (50ms)
-            } else {
-                // El cursor desaparece 3 segundos después de terminar
-                setTimeout(() => {
-                    document.querySelector(".cursor").style.display = "none";
-                }, 3000);
-            }
+      function escribirCarta() {
+        if (indice < textoCarta.length) {
+          if (textoCarta.charAt(indice) === "\n") {
+            elementoTexto.innerHTML += "<br>";
+          } else {
+            elementoTexto.innerHTML += textoCarta.charAt(indice);
+          }
+          indice++;
+          setTimeout(escribirCarta, 50); // Velocidad de escritura (50ms)
+        } else {
+          // El cursor desaparece 3 segundos después de terminar
+          setTimeout(() => {
+            document.querySelector(".cursor").style.display = "none";
+          }, 3000);
         }
+      }
 
-        // Iniciar escritura poco después de cargar
-        window.addEventListener('load', () => {
-            setTimeout(escribirCarta, 1200);
-        });
+      // Iniciar escritura poco después de cargar
+      window.addEventListener("load", () => {
+        setTimeout(escribirCarta, 1200);
+      });
 
-        /* --- LÓGICA DEL CONTADOR --- */
-        const fechaInicio = new Date(2022, 10, 21, 0, 0, 0); 
+      /* --- LÓGICA DEL CONTADOR --- */
+      const fechaInicio = new Date(2022, 10, 21, 0, 0, 0);
 
-        function actualizarContador() {
-            const ahora = new Date();
-            const diferencia = ahora - fechaInicio;
+      function actualizarContador() {
+        const ahora = new Date();
+        const diferencia = ahora - fechaInicio;
 
-            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor(
+          (diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const minutos = Math.floor(
+          (diferencia % (1000 * 60 * 60)) / (1000 * 60),
+        );
+        const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-            const contadorDoc = document.getElementById("contador");
-            if (contadorDoc) {
-                contadorDoc.innerHTML = `
+        const contadorDoc = document.getElementById("contador");
+        if (contadorDoc) {
+          contadorDoc.innerHTML = `
                     <div class="contador-item">
                         <span class="contador-numero">${dias}</span>
                         <span class="contador-etiqueta">Días</span>
@@ -196,52 +219,71 @@
                         <span class="contador-etiqueta">Seg</span>
                     </div>
                 `;
-            }
         }
+      }
 
-        setInterval(actualizarContador, 1000);
-        actualizarContador();
+      setInterval(actualizarContador, 1000);
+      actualizarContador();
 
-        /* --- CONTROL DE MÚSICA --- */
-        function iniciarMusica() {
-            track.muted = false;
-            track.volume = 1.0; 
-            track.play().then(() => {
-                document.removeEventListener('click', iniciarMusica);
-                document.removeEventListener('touchstart', iniciarMusica);
-                window.removeEventListener('scroll', iniciarMusica);
-            }).catch(e => console.log("Esperando interacción para el audio..."));
-        }
+      /* --- CONTROL DE MÚSICA --- */
+      function iniciarMusica() {
+        track.muted = false;
+        track.volume = 1.0;
+        track
+          .play()
+          .then(() => {
+            document.removeEventListener("click", iniciarMusica);
+            document.removeEventListener("touchstart", iniciarMusica);
+            window.removeEventListener("scroll", iniciarMusica);
+          })
+          .catch((e) => console.log("Esperando interacción para el audio..."));
+      }
 
-        document.addEventListener('click', iniciarMusica);
-        document.addEventListener('touchstart', iniciarMusica);
-        window.addEventListener('scroll', iniciarMusica, { once: true });
+      document.addEventListener("click", iniciarMusica);
+      document.addEventListener("touchstart", iniciarMusica);
+      window.addEventListener("scroll", iniciarMusica, { once: true });
 
-        /* --- GALERÍA DE FOTOS --- */
-        const frases = [
-            "Gracias por ser mi lugar seguro", "Por cada palabra de aliento",
-            "Tu paso por mi vida es un regalo", "Gracias por enseñarme tanto",
-            "Me llevo lo mejor de ti en el corazón", "Gracias por la paciencia y las risas",
-            "Fuiste la mejor parte de mis días", "Gracias por creer en mí",
-            "Agradezco al destino por cruzarnos", "Gracias por dejar una huella imborrable",
-            "No hay código que mida mi gratitud", "Gracias por hacerme mejor persona",
-            "Por los consejos y por estar ahí", "Gracias por este tiempo mágico",
-            "Gracias por cada segundo compartido", "Este día debería ser eterno",
-            "Una imagen que dice más que mil líneas", "Nuestra complicidad en una foto",
-            "Lo que vivimos nadie nos lo quita", "Aún puedo escucharnos reír aquí",
-            "Un tesoro guardado en pixeles", "El arte de coincidir en el momento exacto",
-            "Momentos que se vuelven refugio", "Nuestra historia es mi película favorita",
-            "Donde hubo risas, queda un recuerdo", "La vida es esto: momentos mágicos",
-            "Retratos de una etapa inolvidable", "Cada foto es un 'te quiero' silencioso",
-            "Mi rincón favorito de la memoria", "No es solo una foto, es un pedazo de vida"
-        ];
+      /* --- GALERÍA DE FOTOS --- */
+      const frases = [
+        "Gracias por ser mi lugar seguro",
+        "Por cada palabra de aliento",
+        "Tu paso por mi vida es un regalo",
+        "Gracias por enseñarme tanto",
+        "Me llevo lo mejor de ti en el corazón",
+        "Gracias por la paciencia y las risas",
+        "Fuiste la mejor parte de mis días",
+        "Gracias por creer en mí",
+        "Agradezco al destino por cruzarnos",
+        "Gracias por dejar una huella imborrable",
+        "No hay código que mida mi gratitud",
+        "Gracias por hacerme mejor persona",
+        "Por los consejos y por estar ahí",
+        "Gracias por este tiempo mágico",
+        "Gracias por cada segundo compartido",
+        "Este día debería ser eterno",
+        "Una imagen que dice más que mil líneas",
+        "Nuestra complicidad en una foto",
+        "Lo que vivimos nadie nos lo quita",
+        "Aún puedo escucharnos reír aquí",
+        "Un tesoro guardado en pixeles",
+        "El arte de coincidir en el momento exacto",
+        "Momentos que se vuelven refugio",
+        "Nuestra historia es mi película favorita",
+        "Donde hubo risas, queda un recuerdo",
+        "La vida es esto: momentos mágicos",
+        "Retratos de una etapa inolvidable",
+        "Cada foto es un 'te quiero' silencioso",
+        "Mi rincón favorito de la memoria",
+        "No es solo una foto, es un pedazo de vida",
+      ];
 
-        for (let i = 1; i <= totalFotos; i++) {
-            const momento = document.createElement("div");
-            momento.className = "momento";
-            const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+      for (let i = 1; i <= totalFotos; i++) {
+        const momento = document.createElement("div");
+        momento.className = "momento";
+        const fraseAleatoria =
+          frases[Math.floor(Math.random() * frases.length)];
 
-            momento.innerHTML = `
+        momento.innerHTML = `
                 <div class="image-wrapper">
                     <img src="Imagenes/fotos (${i}).jpg" alt="Recuerdo ${i}" loading="lazy">
                 </div>
@@ -252,45 +294,56 @@
                     <p>${fraseAleatoria} #${i}</p>
                 </div>
             `;
-            galeria.appendChild(momento);
+        galeria.appendChild(momento);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll(".momento").forEach((m) => {
+        m.style.opacity = "0";
+        m.style.transform = "translateY(30px)";
+        m.style.transition = "all 0.8s ease-out";
+        observer.observe(m);
+      });
+
+      /* --- ANIMACIÓN FINAL --- */
+      const finalSeccion = document.querySelector(".final-seccion");
+      finalSeccion.style.opacity = "0";
+      finalSeccion.style.transition = "opacity 1.5s ease-in";
+
+      const finalObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            finalSeccion.style.opacity = "1";
+          }
+        },
+        { threshold: 0.2 },
+      );
+      finalObserver.observe(finalSeccion);
+
+      window.onscroll = function () {
+        if (
+          window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 15
+        ) {
+          confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.8 },
+            colors: ["#ef4444", "#38bdf8", "#ffffff"],
+          });
         }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.momento').forEach(m => {
-            m.style.opacity = "0";
-            m.style.transform = "translateY(30px)";
-            m.style.transition = "all 0.8s ease-out";
-            observer.observe(m);
-        });
-
-        /* --- ANIMACIÓN FINAL --- */
-        const finalSeccion = document.querySelector('.final-seccion');
-        finalSeccion.style.opacity = "0";
-        finalSeccion.style.transition = "opacity 1.5s ease-in";
-        
-        const finalObserver = new IntersectionObserver((entries) => {
-            if(entries[0].isIntersecting) {
-                finalSeccion.style.opacity = "1";
-            }
-        }, { threshold: 0.2 });
-        finalObserver.observe(finalSeccion);
-
-        window.onscroll = function() {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 15) {
-                confetti({
-                    particleCount: 150, spread: 80, origin: { y: 0.8 },
-                    colors: ['#ef4444', '#38bdf8', '#ffffff']
-                });
-            }
-        };
+      };
     </script>
-</body>
+  </body>
 </html>

@@ -7,6 +7,44 @@
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2764.png" />
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos para el contador */
+        #contador {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            max-width: fit-content;
+        }
+
+        .contador-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .contador-numero {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ef4444;
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .contador-etiqueta {
+            font-size: 0.7rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
 
@@ -18,6 +56,9 @@
         <div class="header-content">
             <h1>Me encantas Carol...</h1>
             <p class="subtitle">Un pequeño detalle, para toda la vida</p>
+            
+            <div id="contador"></div>
+
             <div class="divider"></div>
             <p class="scroll-hint">Toca cualquier parte y desliza para recordar... ↓</p>
         </div>
@@ -38,6 +79,44 @@
         const galeria = document.getElementById("galeria");
         const totalFotos = 117; 
         const track = document.getElementById('musica');
+
+        // Configuración de la fecha: 21 de Noviembre de 2022
+        const fechaInicio = new Date(2022, 10, 21, 0, 0, 0); 
+
+        function actualizarContador() {
+            const ahora = new Date();
+            const diferencia = ahora - fechaInicio;
+
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            const contadorDoc = document.getElementById("contador");
+            if (contadorDoc) {
+                contadorDoc.innerHTML = `
+                    <div class="contador-item">
+                        <span class="contador-numero">${dias}</span>
+                        <span class="contador-etiqueta">Días</span>
+                    </div>
+                    <div class="contador-item">
+                        <span class="contador-numero">${horas}</span>
+                        <span class="contador-etiqueta">Hrs</span>
+                    </div>
+                    <div class="contador-item">
+                        <span class="contador-numero">${minutos}</span>
+                        <span class="contador-etiqueta">Min</span>
+                    </div>
+                    <div class="contador-item">
+                        <span class="contador-numero">${segundos}</span>
+                        <span class="contador-etiqueta">Seg</span>
+                    </div>
+                `;
+            }
+        }
+
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
 
         function iniciarMusica() {
             track.muted = false;
@@ -76,7 +155,6 @@
             momento.className = "momento";
             const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
 
-            // CORRECCIÓN: Se cambió "foto" por "fotos" para coincidir con tus archivos
             momento.innerHTML = `
                 <div class="image-wrapper">
                     <img src="Imagenes/fotos (${i}).jpg" alt="Recuerdo ${i}" loading="lazy">

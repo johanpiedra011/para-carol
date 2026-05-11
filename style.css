@@ -197,3 +197,32 @@ footer {
         padding: 0 15px;
     }
 }
+
+.typewriter-container {
+    max-width: 600px;
+    margin: 30px auto;
+    min-height: 120px; /* Evita que el diseño salte mientras se escribe */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border-left: 2px solid var(--accent-color); /* Una línea roja elegante al lado */
+}
+
+#carta-escrita {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    display: inline; /* Para que el cursor se mantenga al lado del texto */
+}
+
+.cursor {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    animation: parpadeo 0.8s infinite;
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}

@@ -40,7 +40,6 @@
         const totalFotos = 117; 
         const track = document.getElementById('musica');
 
-        // Función para activar audio tras interacción (Requisito de navegadores)
         function iniciarMusica() {
             track.muted = false;
             track.volume = 1.0; 
@@ -78,10 +77,10 @@
             momento.className = "momento";
             const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
 
-            // Importante: Busca dentro de la carpeta 'Imagenes'
+            // CORRECCIÓN: Se cambió "foto" por "fotos" para coincidir con tus archivos
             momento.innerHTML = `
                 <div class="image-wrapper">
-                    <img src="Imagenes/foto (${i}).jpg" alt="Recuerdo ${i}" loading="lazy">
+                    <img src="Imagenes/fotos (${i}).jpg" alt="Recuerdo ${i}" loading="lazy">
                 </div>
                 <div class="caption">
                     <svg class="heart-svg" viewBox="0 0 32 32" width="20" height="20">
@@ -93,7 +92,6 @@
             galeria.appendChild(momento);
         }
 
-        // Efecto de aparición suave (Scroll Animation)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -110,7 +108,6 @@
             observer.observe(m);
         });
 
-        // Confeti al llegar al final
         window.onscroll = function() {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 15) {
                 confetti({

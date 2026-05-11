@@ -178,3 +178,22 @@ footer {
     .timeline { padding: 20px; }
     .momento { margin-bottom: 40px; }
 }
+
+.contador-intro {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-main);
+    margin-top: 30px;
+    margin-bottom: -10px; /* Para que quede cerca del contador */
+    opacity: 0.9;
+    font-style: italic;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Ajuste para móviles */
+@media (max-width: 480px) {
+    .contador-intro {
+        font-size: 0.9rem;
+        padding: 0 20px;
+    }
+}

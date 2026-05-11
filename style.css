@@ -180,20 +180,20 @@ footer {
 }
 
 .contador-intro {
+    font-family: 'Inter', sans-serif; /* Mismo tipo de letra que el subtítulo */
+    font-weight: 300; /* Peso ligero para que se vea sofisticado */
     font-size: 1rem;
-    font-weight: 300;
-    color: var(--text-main);
-    margin-top: 30px;
-    margin-bottom: -10px; /* Para que quede cerca del contador */
+    color: var(--text-muted); /* El color gris que ya tienes en tus variables */
+    margin-top: 25px;
+    margin-bottom: -15px; /* Lo acerca al contador para que se entienda que son una unidad */
+    letter-spacing: 0.5px;
     opacity: 0.9;
-    font-style: italic;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-/* Ajuste para móviles */
+/* Ajuste opcional para móviles */
 @media (max-width: 480px) {
     .contador-intro {
-        font-size: 0.9rem;
-        padding: 0 20px;
+        font-size: 0.85rem;
+        padding: 0 15px;
     }
 }

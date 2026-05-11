@@ -8,12 +8,27 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* Estilos para el contador */
+        /* Estilos para la sección final del contador */
+        .final-seccion {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, transparent, rgba(239, 68, 68, 0.05));
+        }
+
+        .contador-intro {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            color: #94a3b8; /* Color grisáceo suave */
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
         #contador {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin: 25px auto;
+            margin: 0 auto 40px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
@@ -56,15 +71,17 @@
         <div class="header-content">
             <h1>Me encantas Carol...</h1>
             <p class="subtitle">Un pequeño detalle, para toda la vida</p>
-            <p class="contador-intro">Cada segundo de nuestra historia desde aquel 21 de noviembre...</p>
-            <div id="contador"></div>
-
             <div class="divider"></div>
             <p class="scroll-hint">Toca cualquier parte y desliza para recordar... ↓</p>
         </div>
     </header>
 
     <div class="timeline" id="galeria"></div>
+
+    <section class="final-seccion">
+        <p class="contador-intro">Cada segundo de nuestra historia desde aquel 21 de noviembre...</p>
+        <div id="contador"></div>
+    </section>
 
     <footer>
         <div class="footer-content">
@@ -80,7 +97,6 @@
         const totalFotos = 117; 
         const track = document.getElementById('musica');
 
-        // Configuración de la fecha: 21 de Noviembre de 2022
         const fechaInicio = new Date(2022, 10, 21, 0, 0, 0); 
 
         function actualizarContador() {
@@ -184,6 +200,18 @@
             m.style.transition = "all 0.8s ease-out";
             observer.observe(m);
         });
+
+        // Animación para que la sección final aparezca suavemente
+        const finalSeccion = document.querySelector('.final-seccion');
+        finalSeccion.style.opacity = "0";
+        finalSeccion.style.transition = "opacity 1.5s ease-in";
+        
+        const finalObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                finalSeccion.style.opacity = "1";
+            }
+        }, { threshold: 0.2 });
+        finalObserver.observe(finalSeccion);
 
         window.onscroll = function() {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 15) {

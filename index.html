@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Carol</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2764.png" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <audio id="musica" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <div class="header-content">
+            <h1>Me encantas Carol..</h1>
+            <p class="subtitle">Un pequeño código para una gran persona</p>
+            <div class="divider"></div>
+            <p class="scroll-hint">Toca cualquier parte y desliza para recordar... ↓</p>
+        </div>
+    </header>
+
+    <div class="timeline" id="galeria"></div>
+
+    <footer>
+        <div class="footer-content">
+            <p class="code-text">// Status: Ejecutando despedida con éxito...</p>
+            <p class="final-msg">Te deseo lo mejor en cada paso que des.</p>
+            <p class="signature">Con cariño, Johan</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        const galeria = document.getElementById("galeria");
+        const totalFotos = 117; 
+        const track = document.getElementById('musica');
+
+        // Función para activar audio tras interacción (Requisito de navegadores)
+        function iniciarMusica() {
+            track.muted = false;
+            track.volume = 1.0; 
+            track.play().then(() => {
+                document.removeEventListener('click', iniciarMusica);
+                document.removeEventListener('touchstart', iniciarMusica);
+                window.removeEventListener('scroll', iniciarMusica);
+            }).catch(e => console.log("Esperando interacción para el audio..."));
+        }
+
+        document.addEventListener('click', iniciarMusica);
+        document.addEventListener('touchstart', iniciarMusica);
+        window.addEventListener('scroll', iniciarMusica, { once: true });
+
+        const frases = [
+            "Gracias por ser mi lugar seguro", "Por cada palabra de aliento",
+            "Tu paso por mi vida es un regalo", "Gracias por enseñarme tanto",
+            "Me llevo lo mejor de ti en el corazón", "Gracias por la paciencia y las risas",
+            "Fuiste la mejor parte de mis días", "Gracias por creer en mí",
+            "Agradezco al destino por cruzarnos", "Gracias por dejar una huella imborrable",
+            "No hay código que mida mi gratitud", "Gracias por hacerme mejor persona",
+            "Por los consejos y por estar ahí", "Gracias por este tiempo mágico",
+            "Gracias por cada segundo compartido", "Este día debería ser eterno",
+            "Una imagen que dice más que mil líneas", "Nuestra complicidad en una foto",
+            "Lo que vivimos nadie nos lo quita", "Aún puedo escucharnos reír aquí",
+            "Un tesoro guardado en pixeles", "El arte de coincidir en el momento exacto",
+            "Momentos que se vuelven refugio", "Nuestra historia es mi película favorita",
+            "Donde hubo risas, queda un recuerdo", "La vida es esto: momentos mágicos",
+            "Retratos de una etapa inolvidable", "Cada foto es un 'te quiero' silencioso",
+            "Mi rincón favorito de la memoria", "No es solo una foto, es un pedazo de vida"
+        ];
+
+        for (let i = 1; i <= totalFotos; i++) {
+            const momento = document.createElement("div");
+            momento.className = "momento";
+            const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+
+            // Importante: Busca dentro de la carpeta 'Imagenes'
+            momento.innerHTML = `
+                <div class="image-wrapper">
+                    <img src="Imagenes/foto (${i}).jpg" alt="Recuerdo ${i}" loading="lazy">
+                </div>
+                <div class="caption">
+                    <svg class="heart-svg" viewBox="0 0 32 32" width="20" height="20">
+                        <path fill="#ef4444" d="M16 28.5L14.1 26.8C7.33 20.67 3 16.74 3 11.91C3 7.96 6.09 4.87 10.04 4.87C12.28 4.87 14.41 5.91 15.82 7.55L16 7.76L16.18 7.55C17.59 5.91 19.72 4.87 21.96 4.87C25.91 4.87 29 7.96 29 11.91C29 16.74 24.67 20.67 17.9 26.81L16 28.5Z"/>
+                    </svg>
+                    <p>${fraseAleatoria} #${i}</p>
+                </div>
+            `;
+            galeria.appendChild(momento);
+        }
+
+        // Efecto de aparición suave (Scroll Animation)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.momento').forEach(m => {
+            m.style.opacity = "0";
+            m.style.transform = "translateY(30px)";
+            m.style.transition = "all 0.8s ease-out";
+            observer.observe(m);
+        });
+
+        // Confeti al llegar al final
+        window.onscroll = function() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 15) {
+                confetti({
+                    particleCount: 150, spread: 80, origin: { y: 0.8 },
+                    colors: ['#ef4444', '#38bdf8', '#ffffff']
+                });
+            }
+        };
+    </script>
+</body>
+</html>

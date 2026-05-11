@@ -4,7 +4,7 @@
 :root {
     --bg-color: #0f172a;
     --card-bg: #1e293b;
-    --accent-color: #ef4444; /* Cambiado a ROJO para más romance */
+    --accent-color: #ef4444; 
     --text-main: #f1f5f9;
     --text-muted: #94a3b8;
 }
@@ -16,11 +16,13 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    /* Evita que saltos de contenido afecten el scroll */
+    scroll-behavior: auto !important; 
 }
 
 /* Encabezado */
 header {
-    min-height: 100vh; /* Cambiado a min-height para que quepa el contador */
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,9 +50,46 @@ h1 {
     letter-spacing: 2px;
     color: var(--text-muted);
     text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
-/* --- ESTILOS DEL CONTADOR --- */
+/* --- CARTA MÁQUINA DE ESCRIBIR (CORREGIDO) --- */
+.typewriter-container {
+    max-width: 600px;
+    margin: 40px auto;
+    /* Espacio gigante reservado para evitar saltos de scroll */
+    min-height: 1800px; 
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border-left: 2px solid var(--accent-color);
+    text-align: left;
+    /* Propiedad técnica para aislar el renderizado del contenedor */
+    contain: paint; 
+}
+
+#carta-escrita {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    white-space: pre-wrap; /* Mantiene los espacios y saltos */
+}
+
+.cursor {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    display: inline-block;
+    animation: parpadeo 0.8s infinite;
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- ESTILOS DEL CONTADOR (SECCIÓN FINAL) --- */
 #contador {
     display: flex;
     justify-content: center;
@@ -86,13 +125,12 @@ h1 {
     margin-top: 5px;
     opacity: 0.8;
 }
-/* ---------------------------- */
 
 .divider {
     width: 60px;
     height: 3px;
     background-color: var(--accent-color);
-    margin: 20px auto;
+    margin: 40px auto;
     border-radius: 2px;
 }
 
@@ -170,6 +208,17 @@ footer {
     color: var(--accent-color);
 }
 
+.contador-intro {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 25px;
+    margin-bottom: -15px;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
 /* Adaptación para celulares */
 @media (max-width: 480px) {
     h1 { font-size: 2.8rem; }
@@ -177,52 +226,8 @@ footer {
     .contador-item { min-width: 50px; }
     .timeline { padding: 20px; }
     .momento { margin-bottom: 40px; }
-}
-
-.contador-intro {
-    font-family: 'Inter', sans-serif; /* Mismo tipo de letra que el subtítulo */
-    font-weight: 300; /* Peso ligero para que se vea sofisticado */
-    font-size: 1rem;
-    color: var(--text-muted); /* El color gris que ya tienes en tus variables */
-    margin-top: 25px;
-    margin-bottom: -15px; /* Lo acerca al contador para que se entienda que son una unidad */
-    letter-spacing: 0.5px;
-    opacity: 0.9;
-}
-
-/* Ajuste opcional para móviles */
-@media (max-width: 480px) {
-    .contador-intro {
-        font-size: 0.85rem;
-        padding: 0 15px;
+    .typewriter-container { 
+        min-height: 2500px; /* En móviles el texto es MUCHO más largo verticalmente */
+        padding: 15px;
     }
-}
-
-.typewriter-container {
-    max-width: 600px;
-    margin: 30px auto;
-    min-height: 120px; /* Evita que el diseño salte mientras se escribe */
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 15px;
-    border-left: 2px solid var(--accent-color); /* Una línea roja elegante al lado */
-}
-
-#carta-escrita {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--text-main);
-    display: inline; /* Para que el cursor se mantenga al lado del texto */
-}
-
-.cursor {
-    font-size: 1.2rem;
-    color: var(--accent-color);
-    animation: parpadeo 0.8s infinite;
-}
-
-@keyframes parpadeo {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
 }

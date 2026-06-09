@@ -80,7 +80,7 @@
         border-left: 2px solid rgba(245,158,11,0.4);
         border-radius: 0 20px 20px 0;
         padding: 30px 28px;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
         animation: fadeUp 1.4s ease-out;
       }
 
@@ -98,6 +98,45 @@
         color: #f59e0b;
         font-weight: bold;
         animation: parpadeo 0.8s infinite;
+      }
+
+      /* REPRODUCTOR DE MÚSICA MINIMALISTA */
+      .audio-box {
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 35px;
+        background: rgba(255, 255, 255, 0.01);
+        padding: 12px 20px;
+        border-radius: 50px;
+        border: 1px solid rgba(245, 158, 11, 0.1);
+        transition: opacity 1.5s ease-in;
+      }
+
+      .audio-box.visible {
+        opacity: 1;
+      }
+
+      .music-btn {
+        background: rgba(245,158,11,0.12);
+        border: 1px solid rgba(245,158,11,0.4);
+        color: #f59e0b;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+      }
+
+      .music-btn:hover {
+        background: rgba(245,158,11,0.2);
+        transform: scale(1.05);
       }
 
       @keyframes parpadeo {
@@ -289,6 +328,9 @@
 
     <canvas id="starCanvas"></canvas>
 
+    <!-- CONTROL DE AUDIO DE TU CANCIÓN -->
+    <audio id="musicaRomantica" loop src="perfect.mp3"></audio>
+
     <div class="page">
 
       <div class="header">
@@ -301,6 +343,12 @@
       <div class="carta-container">
         <p id="carta-escrita"></p>
         <span class="cursor">|</span>
+      </div>
+
+      <!-- REPRODUCTOR INTERACTIVO DE MÚSICA (Aparece al terminar el texto) -->
+      <div class="audio-box" id="audio-box">
+        <button class="music-btn" id="music-control">▶</button>
+        <span style="font-size: 0.8rem; color: #d4c5a9; font-style: italic;">Dale play a este fondo musical ✨</span>
       </div>
 
       <div class="respuesta-seccion" id="respuesta-seccion">
@@ -325,7 +373,7 @@
           <div class="success-msg" id="success-msg">
             <div class="success-icon">✨</div>
             <div class="success-text">¡Mensaje enviado!</div>
-            <div class="success-sub">Johan recibira el mensaje que le pusiste.</div>
+            <div class="success-sub">Johan recibirá el mensaje que le pusiste.</div>
           </div>
         </div>
       </div>
@@ -392,6 +440,8 @@
         } else {
           setTimeout(() => {
             document.querySelector('.cursor').style.display = 'none';
+            // Al terminar la carta, revela el reproductor y el formulario juntos
+            document.getElementById('audio-box').classList.add('visible');
             document.getElementById('respuesta-seccion').classList.add('visible');
           }, 1500);
         }
@@ -399,6 +449,20 @@
 
       window.addEventListener('load', () => {
         setTimeout(escribirCarta, 1000);
+      });
+
+      /* === MANEJO DEL REPRODUCTOR DE AUDIO === */
+      const musica = document.getElementById('musicaRomantica');
+      const btnMusica = document.getElementById('music-control');
+
+      btnMusica.addEventListener('click', () => {
+        if (musica.paused) {
+          musica.play().catch(err => console.log("Se requiere interacción:", err));
+          btnMusica.textContent = '⏸';
+        } else {
+          musica.pause();
+          btnMusica.textContent = '▶';
+        }
       });
 
       /* === FORMULARIO === */

@@ -24,12 +24,71 @@
         pointer-events: none;
       }
 
+      /* PANTALLA DE BIENVENIDA PARA DESBLOQUEAR EL AUDIO */
+      #intro-screen {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: #0a0800;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: opacity 1s ease, visibility 1s;
+      }
+
+      #intro-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .intro-content {
+        text-align: center;
+        animation: pulseGlow 2s infinite alternate;
+        padding: 20px;
+      }
+
+      .intro-icon {
+        font-size: 3rem;
+        color: #fcd34d;
+        margin-bottom: 15px;
+        text-shadow: 0 0 20px rgba(245,158,11,0.5);
+      }
+
+      .intro-text {
+        font-family: 'Dancing Script', cursive;
+        font-size: 2.2rem;
+        color: #fcd34d;
+        margin-bottom: 8px;
+      }
+
+      .intro-subtext {
+        font-size: 0.8rem;
+        color: #78695a;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      @keyframes pulseGlow {
+        from { transform: scale(0.98); opacity: 0.8; }
+        to { transform: scale(1.02); opacity: 1; }
+      }
+
+      /* CONTENIDO PRINCIPAL DE LA CARTA */
       .page {
         position: relative;
         z-index: 1;
         max-width: 650px;
         margin: 0 auto;
         padding: 60px 24px 80px;
+        display: none; /* Se oculta hasta que dé clic en la intro */
+      }
+
+      .page.visible {
+        display: block;
       }
 
       .header {
@@ -280,6 +339,11 @@
         padding: 60px 20px 40px;
         position: relative;
         z-index: 1;
+        display: none;
+      }
+
+      footer.visible {
+        display: block;
       }
 
       .footer-firma {
@@ -328,10 +392,17 @@
 
     <canvas id="starCanvas"></canvas>
 
-    <!-- CONTROL DE AUDIO DE TU CANCIÓN -->
+    <div id="intro-screen">
+      <div class="intro-content">
+        <div class="intro-icon">🌙</div>
+        <div class="intro-text">Un mensaje para ti</div>
+        <div class="intro-subtext">Haz clic para abrir ✦</div>
+      </div>
+    </div>
+
     <audio id="musicaRomantica" loop src="perfect.mp3"></audio>
 
-    <div class="page">
+    <div class="page" id="main-content">
 
       <div class="header">
         <div class="header-tag">✦ Para Carol ✦</div>
@@ -345,10 +416,9 @@
         <span class="cursor">|</span>
       </div>
 
-      <!-- REPRODUCTOR INTERACTIVO DE MÚSICA (Aparece al terminar el texto) -->
       <div class="audio-box" id="audio-box">
-        <button class="music-btn" id="music-control">▶</button>
-        <span style="font-size: 0.8rem; color: #d4c5a9; font-style: italic;">Dale play a este fondo musical ✨</span>
+        <button class="music-btn" id="music-control">⏸</button>
+        <span style="font-size: 0.8rem; color: #d4c5a9; font-style: italic;">Música de fondo activa ✨</span>
       </div>
 
       <div class="respuesta-seccion" id="respuesta-seccion">
@@ -380,7 +450,7 @@
 
     </div>
 
-    <footer>
+    <footer id="main-footer">
       <div class="footer-firma">Con cariño, Johan</div>
       <a class="back-btn" href="index.html">← Volver al inicio</a>
     </footer>
@@ -422,6 +492,33 @@
       }
       drawStars();
 
+      /* === MANEJO INTERACTIVO DEL AUDIO E INTRO === */
+      const introScreen = document.getElementById('intro-screen');
+      const mainContent = document.getElementById('main-content');
+      const mainFooter = document.getElementById('main-footer');
+      const musica = document.getElementById('musicaRomantica');
+      const btnMusica = document.getElementById('music-control');
+
+      introScreen.addEventListener('click', () => {
+        // Desbloquea y arranca el audio al instante con el primer toque
+        musica.play()
+          .then(() => {
+            btnMusica.textContent = '⏸';
+          })
+          .catch(err => {
+            console.log("El navegador bloqueó el audio aún con el clic:", err);
+            btnMusica.textContent = '▶';
+          });
+
+        // Oculta la intro y revela la estructura limpia de la carta
+        introScreen.classList.add('hidden');
+        mainContent.classList.add('visible');
+        mainFooter.classList.add('visible');
+
+        // Lanza el efecto de máquina de escribir inmediatamente
+        setTimeout(escribirCarta, 800);
+      });
+
       /* === MÁQUINA DE ESCRIBIR === */
       const textoCarta = "Hola Carol.\n\n\nAquí va el texto de tu carta nueva. Reemplaza este contenido con lo que quieras decirle.\n\n\nEste es solo un ejemplo para que veas cómo se ve el efecto de máquina de escribir con el estilo dorado.\n\n\nAtt: El chico que más te ama en este universo...";
 
@@ -440,24 +537,17 @@
         } else {
           setTimeout(() => {
             document.querySelector('.cursor').style.display = 'none';
-            // Al terminar la carta, revela el reproductor y el formulario juntos
+            // Muestra los botones y el formulario al terminar la carta
             document.getElementById('audio-box').classList.add('visible');
             document.getElementById('respuesta-seccion').classList.add('visible');
           }, 1500);
         }
       }
 
-      window.addEventListener('load', () => {
-        setTimeout(escribirCarta, 1000);
-      });
-
-      /* === MANEJO DEL REPRODUCTOR DE AUDIO === */
-      const musica = document.getElementById('musicaRomantica');
-      const btnMusica = document.getElementById('music-control');
-
+      /* === CONTROL MANUAL DEL REPRODUCTOR (Por si ella quiere pausarla) === */
       btnMusica.addEventListener('click', () => {
         if (musica.paused) {
-          musica.play().catch(err => console.log("Se requiere interacción:", err));
+          musica.play().catch(err => console.log(err));
           btnMusica.textContent = '⏸';
         } else {
           musica.pause();
@@ -465,7 +555,7 @@
         }
       });
 
-      /* === FORMULARIO === */
+      /* === FORMULARIO DE RESPUESTA === */
       const form = document.getElementById('form-respuesta');
       const btnEnviar = document.getElementById('btn-enviar');
       const successMsg = document.getElementById('success-msg');
@@ -497,6 +587,5 @@
         }
       });
     </script>
-
   </body>
 </html>

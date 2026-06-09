@@ -14,11 +14,9 @@
       rel="stylesheet"
     />
     <style>
-      /* --- Estilos de la Carta (Máquina de escribir) --- */
       .typewriter-container {
         max-width: 600px;
         margin: 30px auto;
-        /* AJUSTE CLAVE: Dale una altura mínima para que la página no salte */
         min-height: 1450px;
         padding: 25px;
         background: rgba(255, 255, 255, 0.03);
@@ -45,24 +43,14 @@
       }
 
       @keyframes parpadeo {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
-        }
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
       }
 
-      /* --- Estilos para la sección final del contador --- */
       .final-seccion {
         text-align: center;
         padding: 60px 20px;
-        background: linear-gradient(
-          to bottom,
-          transparent,
-          rgba(239, 68, 68, 0.05)
-        );
+        background: linear-gradient(to bottom, transparent, rgba(239, 68, 68, 0.05));
       }
 
       .contador-intro {
@@ -121,14 +109,7 @@
         <h1>Me encantas Carol...</h1>
         <p class="subtitle">Un pequeño detalle, para toda la vida</p>
 
-        <p
-          style="
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-top: 15px;
-            font-style: italic;
-          "
-        >
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 15px; font-style: italic;">
           (Toca dos veces la pantalla para que la música pueda sonar)
         </p>
 
@@ -156,29 +137,46 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script>
       const galeria = document.getElementById("galeria");
       const totalFotos = 116;
       const track = document.getElementById("musica");
 
+      /* --- NOTIFICACIÓN EMAILJS --- */
+      emailjs.init("XXLuwTQsTQLyCMvK7");
+
+      window.addEventListener("load", function () {
+        const hora = new Date().toLocaleString("es-CO", {
+          timeZone: "America/Bogota",
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        });
+        emailjs.send("respuesta_carta", "template_9gizfaa", {
+          hora: "📩 Carol abrió la carta de CUMPLEAÑOS el " + hora,
+        });
+      });
+
       /* --- LÓGICA DE LA CARTA (Máquina de escribir) --- */
       const textoCarta =
-        "Hola Carol.\n\n\nTe agradezco profundamente por haber recibido este pequeño detalle, se que no es gran cosa, se que vas a recibir mejores cosas que esto, pero bueno, esto lo hago con todo el amor y todo el cariño que te tengo. Primero que todo, me quiero enfocar en ti, no sé si te entregue esto el 14, pero quiero desearte un feliz cumpleaños, espero que la estes pasando muy bien, y no creo que sea el indicado para decirte esto, pero estoy muy orgulloso de ti, por la clase de persona que eres, por tu personalidad, tu carácter, por ser como eres, pero, sobre todo, le agradezco a Dios porque en algún momento de mi vida, tuve el privilegio de tenerte como mi pareja.\n\n\nY pues Carol… Acepto que en el pasado no supe estar a la altura de lo que merecías. Cometí errores que hoy, con más años y más calma, puedo ver con claridad. Te puedo prometer que he dedicado cada día de este tiempo a trabajar en mi interior, a sanar y a convertirme en el hombre que hoy te habla con el corazón abierto.\n\nY sé que todos los momentos malos por los que he pasado en estos últimos meses, es la cosecha de todo lo que sembré en un pasado, y por eso mismo, te agradezco el simple hecho de que tomes algo de tu tiempo, y vayas a mi casa, o hable conmigo por chat.\n \nSe que esta simple carta no va a cambiar tu opinión, pero quiero decirte que eres la mujer que marco un antes y un después en mi vida, no se si nos vamos a volver a encontrar, pero de lo que, si estoy seguro, es que jamás en mi vida me voy a volver a enamorar tanto de una persona, y no te digo que no vas a encontrar al amor de tu vida, porque se que eso es una mentira, pero de lo que si estoy seguro, es que es muy difícil que alguien te ame mas que yo, si fuera necesario, daría mi vida por ti. Y si, pasaron 8 meses, sin saber nada de ti, 8 meses sin tocarte, y si, eso me hace falta, estar contigo era muy rico, ¿pero sabes que es más rico? Mas rico es volvernos a encontrar después de 8 meses y tener la misma conexión que teníamos cuando nos conocíamos, la misma que teníamos en nuestros mejores tiempos.\n \nY pues nada Carol, lastimosamente no puedo escribir todo lo que me gustaría decirte, me atrevería a decir que esto no es ni la mitad, pero creo que ahí algunas cosas importantes, y no quiero volver a decir lo mismo de siempre, de que te voy a dejar quieta y todo eso… Bla bla bla, porque al fin y al cabo, siempre te voy a estar buscando, en esta ocasión quiero decirte que voy a pensar antes de decir o hacer algo, no se si haya una próxima, pero quiero decirte que siempre estaré aquí para lo que necesites. Tratare de ir mentalizándome que ya nada será igual que antes, creo que ya es el tiempo justo, el tiempo justo de dejarte tranquila, creo que ya es mucho lo que me has aguantado, y te digo esto no por hacer drama ni nada de eso, te lo digo para que cuando te de tu espacio completamente, no vayas a pensar que es por que estoy hablando con alguien más, porque no Carol, estoy tan ciegamente enamorado de ti, que no puedo pensar en nadie más.\n\n\n\nEspero poder tener una oportunidad de hablar en persona contigo, creo que seria la mejor manera de terminar esta linda historia… Me tomó tiempo entender que el amor no solo se demuestra estando, sino también sabiendo cuándo irse\n \nAtt: El chico que mas te ama en este universo…";
+        "Hola Carol.\n\n\nTe agradezco profundamente por haber recibido este pequeño detalle, se que no es gran cosa, se que vas a recibir mejores cosas que esto, pero bueno, esto lo hago con todo el amor y todo el cariño que te tengo. Primero que todo, me quiero enfocar en ti, no sé si te entregue esto el 14, pero quiero desearte un feliz cumpleaños, espero que la estes pasando muy bien, y no creo que sea el indicado para decirte esto, pero estoy muy orgulloso de ti, por la clase de persona que eres, por tu personalidad, tu carácter, por ser como eres, pero, sobre todo, le agradezco a Dios porque en algún momento de mi vida, tuve el privilegio de tenerte como mi pareja.\n\n\nY pues Carol… Acepto que en el pasado no supe estar a la altura de lo que merecías. Cometí errores que hoy, con más años y más calma, puedo ver con claridad. Te puedo prometer que he dedicado cada día de este tiempo a trabajar en mi interior, a sanar y a convertirme en el hombre que hoy te habla con el corazón abierto.\n\nY sé que todos los momentos malos por los que he pasado en estos últimos meses, es la cosecha de todo lo que sembré en un pasado, y por eso mismo, te agradezco el simple hecho de que tomes algo de tu tiempo, y vayas a mi casa, o hable conmigo por chat.\n \nSe que esta simple carta no va a cambiar tu opinión, pero quiero decirte que eres la mujer que marco un antes y un después en mi vida, no se si nos vamos a volver a encontrar, pero de lo que, si estoy seguro, es que jamás en mi vida me voy a volver a enamorar tanto de una persona, y no te digo que no vas a encontrar al amor de tu vida, porque se que eso es una mentira, pero de lo que si estoy seguro, es que es muy difícil que alguien te ame mas que yo, si fuera necesario, daría mi vida por ti. Y si, pasaron 8 meses, sin saber nada de ti, 8 meses sin tocarte, y si, eso me hace falta, estar contigo era muy rico, ¿pero sabes que es más rico? Mas rico es volvernos a encontrar después de 8 meses y tener la misma conexión que teníamos cuando nos conocíamos, la misma que teníamos en nuestros mejores tiempos.\n \nY pues nada Carol, lastimosamente no puedo escribir todo lo que me gustaría decirte, me atrevería a decir que esto no es ni la mitad, pero creo que ahí algunas cosas importantes, y no quiero volver a decir lo mismo de siempre, de que te voy a dejar quieta y todo eso… Bla bla bla, porque al fin y al cabo, siempre te voy a estar buscando, en esta ocasión quiero decirte que voy a pensar antes de decir o hacer algo, no se si haya una próxima, pero quiero decirte que siempre estaré aquí para lo que necesites. Tratare de ir mentalizándome que ya nada será igual que antes, creo que ya es el tiempo justo, el tiempo justo de dejarte tranquila, creo que ya es mucho lo que me has aguantado, y te digo esto no por hacer drama ni nada de eso, te lo digo para que cuando te de tu espacio completamente, no vayas a pensar que es por que estoy hablando con alguien más, porque no Carol, estoy tan ciegamente enamorado de ti, que no puedo pensar en nadie más.\n\n\n\nEspero poder tener una oportunidad de hablar en persona contigo, creo que seria la mejor manera de terminar esta linda historia… Me tomó tiempo entender que el amor no solo se demuestra estando, sino también sabiendo cuándo irse\n \nAtt: El chico que mas te ama en este universo…";
       const elementoTexto = document.getElementById("carta-escrita");
       let indice = 0;
 
       function escribirCarta() {
         if (indice < textoCarta.length) {
-          // Usamos una variable temporal para no forzar al DOM a refrescar todo cada milisegundo
           if (textoCarta.charAt(indice) === "\n") {
             elementoTexto.innerHTML += "<br>";
           } else {
-            // Creamos un nodo de texto para que sea más ligero para el navegador
             const letra = document.createTextNode(textoCarta.charAt(indice));
             elementoTexto.appendChild(letra);
           }
-
           indice++;
           setTimeout(escribirCarta, 45);
         } else {
@@ -188,7 +186,6 @@
         }
       }
 
-      // Iniciar escritura poco después de cargar
       window.addEventListener("load", () => {
         setTimeout(escribirCarta, 1200);
       });
@@ -201,34 +198,30 @@
         const diferencia = ahora - fechaInicio;
 
         const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-        const horas = Math.floor(
-          (diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        );
-        const minutos = Math.floor(
-          (diferencia % (1000 * 60 * 60)) / (1000 * 60),
-        );
+        const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
         const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
         const contadorDoc = document.getElementById("contador");
         if (contadorDoc) {
           contadorDoc.innerHTML = `
-                    <div class="contador-item">
-                        <span class="contador-numero">${dias}</span>
-                        <span class="contador-etiqueta">Días</span>
-                    </div>
-                    <div class="contador-item">
-                        <span class="contador-numero">${horas}</span>
-                        <span class="contador-etiqueta">Hrs</span>
-                    </div>
-                    <div class="contador-item">
-                        <span class="contador-numero">${minutos}</span>
-                        <span class="contador-etiqueta">Min</span>
-                    </div>
-                    <div class="contador-item">
-                        <span class="contador-numero">${segundos}</span>
-                        <span class="contador-etiqueta">Seg</span>
-                    </div>
-                `;
+            <div class="contador-item">
+              <span class="contador-numero">${dias}</span>
+              <span class="contador-etiqueta">Días</span>
+            </div>
+            <div class="contador-item">
+              <span class="contador-numero">${horas}</span>
+              <span class="contador-etiqueta">Hrs</span>
+            </div>
+            <div class="contador-item">
+              <span class="contador-numero">${minutos}</span>
+              <span class="contador-etiqueta">Min</span>
+            </div>
+            <div class="contador-item">
+              <span class="contador-numero">${segundos}</span>
+              <span class="contador-etiqueta">Seg</span>
+            </div>
+          `;
         }
       }
 
@@ -239,14 +232,11 @@
       function iniciarMusica() {
         track.muted = false;
         track.volume = 1.0;
-        track
-          .play()
-          .then(() => {
-            document.removeEventListener("click", iniciarMusica);
-            document.removeEventListener("touchstart", iniciarMusica);
-            window.removeEventListener("scroll", iniciarMusica);
-          })
-          .catch((e) => console.log("Esperando interacción para el audio..."));
+        track.play().then(() => {
+          document.removeEventListener("click", iniciarMusica);
+          document.removeEventListener("touchstart", iniciarMusica);
+          window.removeEventListener("scroll", iniciarMusica);
+        }).catch((e) => console.log("Esperando interacción para el audio..."));
       }
 
       document.addEventListener("click", iniciarMusica);
@@ -290,20 +280,19 @@
       for (let i = 1; i <= totalFotos; i++) {
         const momento = document.createElement("div");
         momento.className = "momento";
-        const fraseAleatoria =
-          frases[Math.floor(Math.random() * frases.length)];
+        const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
 
         momento.innerHTML = `
-                <div class="image-wrapper">
-                    <img src="Imagenes/fotos (${i}).jpg" alt="Recuerdo ${i}" loading="lazy">
-                </div>
-                <div class="caption">
-                    <svg class="heart-svg" viewBox="0 0 32 32" width="20" height="20">
-                        <path fill="#ef4444" d="M16 28.5L14.1 26.8C7.33 20.67 3 16.74 3 11.91C3 7.96 6.09 4.87 10.04 4.87C12.28 4.87 14.41 5.91 15.82 7.55L16 7.76L16.18 7.55C17.59 5.91 19.72 4.87 21.96 4.87C25.91 4.87 29 7.96 29 11.91C29 16.74 24.67 20.67 17.9 26.81L16 28.5Z"/>
-                    </svg>
-                    <p>${fraseAleatoria} #${i}</p>
-                </div>
-            `;
+          <div class="image-wrapper">
+            <img src="Imagenes/fotos (${i}).jpg" alt="Recuerdo ${i}" loading="lazy">
+          </div>
+          <div class="caption">
+            <svg class="heart-svg" viewBox="0 0 32 32" width="20" height="20">
+              <path fill="#ef4444" d="M16 28.5L14.1 26.8C7.33 20.67 3 16.74 3 11.91C3 7.96 6.09 4.87 10.04 4.87C12.28 4.87 14.41 5.91 15.82 7.55L16 7.76L16.18 7.55C17.59 5.91 19.72 4.87 21.96 4.87C25.91 4.87 29 7.96 29 11.91C29 16.74 24.67 20.67 17.9 26.81L16 28.5Z"/>
+            </svg>
+            <p>${fraseAleatoria} #${i}</p>
+          </div>
+        `;
         galeria.appendChild(momento);
       }
 
@@ -316,7 +305,7 @@
             }
           });
         },
-        { threshold: 0.1 },
+        { threshold: 0.1 }
       );
 
       document.querySelectorAll(".momento").forEach((m) => {
@@ -337,15 +326,12 @@
             finalSeccion.style.opacity = "1";
           }
         },
-        { threshold: 0.2 },
+        { threshold: 0.2 }
       );
       finalObserver.observe(finalSeccion);
 
       window.onscroll = function () {
-        if (
-          window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - 15
-        ) {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 15) {
           confetti({
             particleCount: 150,
             spread: 80,

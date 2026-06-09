@@ -489,7 +489,6 @@
 
       introScreen.addEventListener('click', () => {
 
-        /* Envía la notificación en el momento que ella toca la pantalla */
         const hora = new Date().toLocaleString("es-CO", {
           timeZone: "America/Bogota",
           weekday: "long",
@@ -516,7 +515,7 @@
       });
 
       /* === MÁQUINA DE ESCRIBIR === */
-      const textoCarta = "Hola Carol.\n\n\nAquí va el texto de tu carta nueva. Reemplaza este contenido con lo que quieras decirle.\n\n\nEste es solo un ejemplo para que veas cómo se ve el efecto de máquina de escribir con el estilo dorado.\n\n\nAtt: El chico que más te ama en este universo...";
+      const textoCarta = "Normalmente inicio esto con un \"Hola Carol, espero que estés bien\" y comienzo con muchas palabras nostálgicas, quiero que esta vez sea diferente, que si es el último recuerdo que vas a tener de mí, que sea algo lindo de ver, algo que te saque un par de sonrisas al menos por un momento.\n\nNormalmente cuando una pareja termina, casi siempre terminan con un poco de rencor y todo eso, pero no, creo que esta es una excepción, al menos de mi parte. Carol, usted no es mi ex, usted es mi pasado, no mi enemiga. Usted es la mujer que una vez amé con cada parte de mi ser. Con la que soñé formar una familia, con la que soñé progresar, con la que soñé despertarme todos los días, usted fue con la que en un momento de mi vida, soñé un… Para siempre. Usted es la mujer que me enseñó que se siente amar y ser amado, algo hermoso y doloroso a la vez. Carol, usted es la razón por la que lloré, la razón de unas de las etapas más difíciles de mi vida, pero también, eres la razón por la que sonreía cada día de mi vida, eres la razón por la cual quería salir adelante, eres la razón por la cual no veía la hora de salir del trabajo para pasar por ti al Sena, pero lo más importante, eres la razón por la que creí en el amor por primera vez en mi vida. Tal vez ya no estés presente, ya no hablemos, pero sabes… En un rincón de mi corazón, siempre estará nuestra historia de amor.\n\nSabes, anteriormente era una persona con mucho ego, mucho orgullo. Pero un día… Todo mi ego murió, murió cuando iba rumbo a mi casa en completo silencio, preguntándome porque no fui capaz de ver bien las cosas sabiendo que te necesitaba como el aire que respiro. Todo lo que estoy pasando, son las consecuencias de mis actos. Es un poco difícil aceptar que perdí a la persona que más amé en mi vida por mis actitudes del pasado, duele un poco, sabes… ya que cuando estuve en mi mejor momento, era demasiado tarde para ti, sabes… me aterra la idea de que ya llegó el momento de dejarte tranquila, no te lo voy a negar, pero creo que ya es justo, te mereces una vida sin tanto peso, sin tanto dolor por personas ajenas. Así que Carol, te agradezco de corazón por absolutamente todo, por lo bueno y lo malo, y por favor, nunca cambies tu forma de amar, sé que la Carol que conocí ya no existe, pero sé que, en el fondo de ti, aún está la niña que le gusta que la mimen, la niña que le gusta que la molesten, que le gusta hacer dramas, que le gusta joder a las personas, sé que en el fondo, está la Carol que, en algún momento de mi vida, me enamoré.\n\nLo más probable es que si estás leyendo esta carta, ya no voy a tener absolutamente ninguna red social, no lo hago para que me busques, sé que eso nunca va a pasar, lo hago por mí, para no compartir cosas para que usted las vea, para que cuando me llegue un mensaje a WhatsApp, no revisar el celular con la ilusión de que era usted, por eso lo hago, no por nada más. Y como te estaba diciendo, si en algún momento necesitas hablar con alguien, si en algún momento sientes que estás muy estresada, no quieres saber nada de nadie, si te fijas un par de centímetros más abajo, hay una opción de mandar un mensaje, el día que me necesites, solo escríbeme, que yo me encargo del resto, ¿te parece?\n\nY bueno Carol, creo que me regué bastante, espero que estés de maravilla, espero que todo lo que te propongas te salga de la mejor manera posible... Y nunca, NUNCA… Olvides que te quiero.\n\nAtt: Americano, Johano, y en algún momento de la vida… Amor.";
 
       const elementoTexto = document.getElementById('carta-escrita');
       let indice = 0;
@@ -529,7 +528,7 @@
             elementoTexto.appendChild(document.createTextNode(textoCarta.charAt(indice)));
           }
           indice++;
-          setTimeout(escribirCarta, 40);
+          setTimeout(escribirCarta, 22); /* ← velocidad aumentada */
         } else {
           setTimeout(() => {
             document.querySelector('.cursor').style.display = 'none';
@@ -551,8 +550,8 @@
       });
 
       /* === FORMULARIO DE RESPUESTA === */
-      const form      = document.getElementById('form-respuesta');
-      const btnEnviar = document.getElementById('btn-enviar');
+      const form       = document.getElementById('form-respuesta');
+      const btnEnviar  = document.getElementById('btn-enviar');
       const successMsg = document.getElementById('success-msg');
 
       form.addEventListener('submit', async (e) => {

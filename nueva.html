@@ -50,26 +50,9 @@
         padding: 20px;
       }
 
-      .intro-icon {
-        font-size: 3rem;
-        color: #fcd34d;
-        margin-bottom: 15px;
-        text-shadow: 0 0 20px rgba(245,158,11,0.5);
-      }
-
-      .intro-text {
-        font-family: 'Dancing Script', cursive;
-        font-size: 2.2rem;
-        color: #fcd34d;
-        margin-bottom: 8px;
-      }
-
-      .intro-subtext {
-        font-size: 0.8rem;
-        color: #78695a;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-      }
+      .intro-icon { font-size: 3rem; color: #fcd34d; margin-bottom: 15px; text-shadow: 0 0 20px rgba(245,158,11,0.5); }
+      .intro-text { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #fcd34d; margin-bottom: 8px; }
+      .intro-subtext { font-size: 0.8rem; color: #78695a; letter-spacing: 2px; text-transform: uppercase; }
 
       @keyframes pulseGlow {
         from { transform: scale(0.98); opacity: 0.8; }
@@ -114,20 +97,8 @@
         line-height: 1.1;
       }
 
-      .header-sub {
-        font-size: 0.8rem;
-        color: #78695a;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-      }
-
-      .header-divider {
-        width: 60px;
-        height: 1px;
-        background: rgba(245,158,11,0.3);
-        margin: 0 auto;
-      }
+      .header-sub { font-size: 0.8rem; color: #78695a; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+      .header-divider { width: 60px; height: 1px; background: rgba(245,158,11,0.3); margin: 0 auto; }
 
       .carta-container {
         background: rgba(245,158,11,0.03);
@@ -148,12 +119,7 @@
         display: inline;
       }
 
-      .cursor {
-        font-size: 1.1rem;
-        color: #f59e0b;
-        font-weight: bold;
-        animation: parpadeo 0.8s infinite;
-      }
+      .cursor { font-size: 1.1rem; color: #f59e0b; font-weight: bold; animation: parpadeo 0.8s infinite; }
 
       .audio-box {
         opacity: 0;
@@ -175,8 +141,7 @@
         background: rgba(245,158,11,0.12);
         border: 1px solid rgba(245,158,11,0.4);
         color: #f59e0b;
-        width: 38px;
-        height: 38px;
+        width: 38px; height: 38px;
         border-radius: 50%;
         cursor: pointer;
         display: flex;
@@ -186,139 +151,229 @@
         transition: all 0.2s;
       }
 
-      .music-btn:hover {
-        background: rgba(245,158,11,0.2);
-        transform: scale(1.05);
-      }
+      .music-btn:hover { background: rgba(245,158,11,0.2); transform: scale(1.05); }
 
       @keyframes parpadeo {
         0%, 100% { opacity: 1; }
         50% { opacity: 0; }
       }
 
-      .respuesta-seccion {
+      /* ===== CHAT SECTION ===== */
+      .chat-seccion {
         opacity: 0;
         transition: opacity 1.5s ease-in;
         margin-top: 20px;
       }
 
-      .respuesta-seccion.visible { opacity: 1; }
+      .chat-seccion.visible { opacity: 1; }
 
-      .respuesta-header {
+      .chat-header {
         text-align: center;
         margin-bottom: 24px;
       }
 
-      .respuesta-titulo {
+      .chat-titulo {
         font-family: 'Dancing Script', cursive;
         color: #fcd34d;
         font-size: 1.8rem;
         margin-bottom: 6px;
       }
 
-      .respuesta-sub {
-        font-size: 0.8rem;
-        color: #78695a;
-        font-style: italic;
-      }
+      .chat-sub { font-size: 0.8rem; color: #78695a; font-style: italic; }
 
-      .form-card {
+      .chat-card {
         background: rgba(245,158,11,0.04);
         border: 1px solid rgba(245,158,11,0.15);
         border-radius: 20px;
-        padding: 28px 24px;
+        padding: 0;
+        overflow: hidden;
       }
 
-      .form-group { margin-bottom: 16px; }
-
-      .form-label {
-        display: block;
-        font-size: 0.75rem;
-        color: #92836a;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        margin-bottom: 8px;
+      .chat-mensajes {
+        height: 280px;
+        overflow-y: auto;
+        padding: 20px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(245,158,11,0.2) transparent;
       }
 
-      .form-input {
-        width: 100%;
+      .chat-mensajes::-webkit-scrollbar { width: 4px; }
+      .chat-mensajes::-webkit-scrollbar-track { background: transparent; }
+      .chat-mensajes::-webkit-scrollbar-thumb { background: rgba(245,158,11,0.2); border-radius: 4px; }
+
+      .chat-vacio {
+        text-align: center;
+        color: #4a3f2f;
+        font-size: 0.85rem;
+        font-style: italic;
+        margin: auto;
+        padding: 20px;
+      }
+
+      .burbuja {
+        max-width: 80%;
+        padding: 10px 14px;
+        border-radius: 16px;
+        font-size: 0.88rem;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+
+      .burbuja-carol {
+        background: rgba(245,158,11,0.08);
+        border: 1px solid rgba(245,158,11,0.18);
+        color: #d4c5a9;
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+      }
+
+      .burbuja-johan {
+        background: rgba(245,158,11,0.15);
+        border: 1px solid rgba(245,158,11,0.3);
+        color: #fcd34d;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+
+      .burbuja-nombre {
+        font-size: 0.7rem;
+        color: #78695a;
+        margin-bottom: 3px;
+        letter-spacing: 0.5px;
+      }
+
+      .burbuja-hora {
+        font-size: 0.65rem;
+        color: #4a3f2f;
+        margin-top: 4px;
+        text-align: right;
+      }
+
+      .chat-input-area {
+        border-top: 1px solid rgba(245,158,11,0.1);
+        padding: 14px 16px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+      }
+
+      .chat-input {
+        flex: 1;
         background: rgba(255,255,255,0.03);
         border: 1px solid rgba(245,158,11,0.15);
-        border-radius: 12px;
-        padding: 12px 16px;
+        border-radius: 14px;
+        padding: 10px 14px;
         color: #f1f5f9;
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         font-family: 'Inter', sans-serif;
+        resize: none;
+        height: 44px;
+        max-height: 100px;
+        line-height: 1.5;
+        transition: border-color 0.2s, height 0.1s;
+        overflow-y: auto;
+      }
+
+      .chat-input:focus { outline: none; border-color: rgba(245,158,11,0.4); }
+      .chat-input::placeholder { color: #4a3f2f; }
+
+      .chat-send-btn {
+        background: rgba(245,158,11,0.12);
+        border: 1px solid rgba(245,158,11,0.35);
+        color: #f59e0b;
+        width: 44px; height: 44px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+
+      .chat-send-btn:hover { background: rgba(245,158,11,0.2); transform: scale(1.05); }
+      .chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+      .johan-panel {
+        display: none;
+        margin-top: 16px;
+        background: rgba(245,158,11,0.04);
+        border: 1px solid rgba(245,158,11,0.2);
+        border-radius: 16px;
+        padding: 16px;
+      }
+
+      .johan-panel.visible { display: block; }
+
+      .johan-panel-titulo {
+        font-size: 0.75rem;
+        color: #f59e0b;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .johan-input-area {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+      }
+
+      .johan-input {
+        flex: 1;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(245,158,11,0.2);
+        border-radius: 12px;
+        padding: 10px 14px;
+        color: #f1f5f9;
+        font-size: 0.88rem;
+        font-family: 'Inter', sans-serif;
+        resize: none;
+        height: 44px;
+        line-height: 1.5;
         transition: border-color 0.2s;
       }
 
-      .form-input:focus {
-        outline: none;
-        border-color: rgba(245,158,11,0.4);
-      }
+      .johan-input:focus { outline: none; border-color: rgba(245,158,11,0.5); }
+      .johan-input::placeholder { color: #4a3f2f; }
 
-      .form-input::placeholder { color: #4a3f2f; }
-
-      textarea.form-input {
-        resize: none;
-        height: 130px;
-        line-height: 1.6;
-      }
-
-      .form-btn {
-        width: 100%;
-        padding: 14px;
-        background: rgba(245,158,11,0.1);
-        border: 1px solid rgba(245,158,11,0.3);
-        border-radius: 14px;
-        color: #f59e0b;
-        font-size: 0.95rem;
+      .johan-send-btn {
+        background: rgba(245,158,11,0.18);
+        border: 1px solid rgba(245,158,11,0.4);
+        color: #fcd34d;
+        padding: 10px 16px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 0.8rem;
         font-family: 'Inter', sans-serif;
         font-weight: 600;
-        cursor: pointer;
-        letter-spacing: 0.5px;
-        transition: background 0.2s, transform 0.15s;
-        margin-top: 8px;
+        transition: all 0.2s;
+        white-space: nowrap;
       }
 
-      .form-btn:hover {
-        background: rgba(245,158,11,0.16);
-        transform: translateY(-1px);
-      }
+      .johan-send-btn:hover { background: rgba(245,158,11,0.28); }
 
-      .form-btn:active { transform: translateY(0); }
-
-      .form-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-      }
-
-      .success-msg {
-        display: none;
+      .johan-trigger {
         text-align: center;
-        padding: 24px;
-        background: rgba(245,158,11,0.06);
-        border: 1px solid rgba(245,158,11,0.2);
-        border-radius: 16px;
-        margin-top: 16px;
+        margin-top: 10px;
       }
 
-      .success-msg.visible { display: block; }
-      .success-icon { font-size: 2rem; margin-bottom: 10px; }
-
-      .success-text {
-        font-family: 'Dancing Script', cursive;
-        color: #fcd34d;
-        font-size: 1.4rem;
-        margin-bottom: 6px;
+      .johan-trigger-btn {
+        background: none;
+        border: none;
+        color: #2a2010;
+        font-size: 0.7rem;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+        padding: 4px 8px;
       }
 
-      .success-sub {
-        font-size: 0.8rem;
-        color: #78695a;
-        font-style: italic;
-      }
+      .johan-trigger-btn:hover { color: #4a3f2f; }
 
       footer {
         text-align: center;
@@ -349,10 +404,7 @@
         transition: all 0.2s;
       }
 
-      .back-btn:hover {
-        color: #f59e0b;
-        border-color: rgba(245,158,11,0.35);
-      }
+      .back-btn:hover { color: #f59e0b; border-color: rgba(245,158,11,0.35); }
 
       @keyframes fadeDown {
         from { opacity: 0; transform: translateY(-20px); }
@@ -368,7 +420,7 @@
         h1 { font-size: 2.4rem; }
         .page { padding: 40px 18px 60px; }
         .carta-container { padding: 22px 18px; }
-        .form-card { padding: 20px 16px; }
+        .chat-card { padding: 0; }
       }
     </style>
   </head>
@@ -405,31 +457,38 @@
         <span style="font-size: 0.8rem; color: #d4c5a9; font-style: italic;">Música de fondo activa ✨</span>
       </div>
 
-      <div class="respuesta-seccion" id="respuesta-seccion">
-        <div class="respuesta-header">
-          <div class="respuesta-titulo">¿Quieres dejarme un mensaje? 💌</div>
-          <div class="respuesta-sub">Y tranquila...No es obligación hacerlo</div>
+      <!-- CHAT SECTION -->
+      <div class="chat-seccion" id="chat-seccion">
+        <div class="chat-header">
+          <div class="chat-titulo">¿Quieres dejarme un mensaje? 💌</div>
+          <div class="chat-sub">Y tranquila... No es obligación hacerlo</div>
         </div>
 
-        <div class="form-card">
-          <form id="form-respuesta" action="https://formspree.io/f/mpqerwel" method="POST">
-            <div class="form-group">
-              <label class="form-label" for="nombre">Tu nombre</label>
-              <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Carol..." />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="mensaje">Tu mensaje</label>
-              <textarea class="form-input" id="mensaje" name="mensaje" placeholder="Escríbeme lo que quieras..."></textarea>
-            </div>
-            <button class="form-btn" type="submit" id="btn-enviar">Enviar mensaje ✦</button>
-          </form>
+        <div class="chat-card">
+          <div class="chat-mensajes" id="chat-mensajes">
+            <div class="chat-vacio" id="chat-vacio">Aún no hay mensajes... sé la primera 💛</div>
+          </div>
 
-          <div class="success-msg" id="success-msg">
-            <div class="success-icon">✨</div>
-            <div class="success-text">¡Mensaje enviado!</div>
-            <div class="success-sub">Johan recibirá el mensaje que le pusiste.</div>
+          <div class="chat-input-area">
+            <textarea class="chat-input" id="chat-input" placeholder="Escríbeme lo que quieras..." rows="1"></textarea>
+            <button class="chat-send-btn" id="chat-send-btn" title="Enviar">➤</button>
           </div>
         </div>
+
+        <!-- Botón casi invisible para que Johan active su panel -->
+        <div class="johan-trigger">
+          <button class="johan-trigger-btn" id="johan-trigger-btn" title="">✦</button>
+        </div>
+
+        <!-- Panel secreto de Johan para responder -->
+        <div class="johan-panel" id="johan-panel">
+          <div class="johan-panel-titulo">✦ Responder como Johan</div>
+          <div class="johan-input-area">
+            <textarea class="johan-input" id="johan-input" placeholder="Tu respuesta..."></textarea>
+            <button class="johan-send-btn" id="johan-send-btn">Enviar ✦</button>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -439,16 +498,31 @@
       <a class="back-btn" href="index.html">← Volver al inicio</a>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
+    <!-- Firebase SDK -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import { getDatabase, ref, push, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyA8w4i5L0hKixzFWkT4mMvz50z0Sq_x6hM",
+        authDomain: "para-carol.firebaseapp.com",
+        databaseURL: "https://para-carol-default-rtdb.firebaseio.com",
+        projectId: "para-carol",
+        storageBucket: "para-carol.firebasestorage.app",
+        messagingSenderId: "756918251078",
+        appId: "1:756918251078:web:d67fe20dc7735ad1812447",
+        measurementId: "G-39RECZYHS4"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const mensajesRef = ref(db, 'mensajes');
+
       /* === ESTRELLAS DORADAS === */
       const canvas = document.getElementById('starCanvas');
       const ctx = canvas.getContext('2d');
 
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
+      function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
 
@@ -468,19 +542,22 @@
           const alpha = (Math.sin(s.a) + 1) / 2 * 0.9;
           ctx.beginPath();
           ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          ctx.fillStyle = s.gold
-            ? `rgba(245,158,11,${alpha})`
-            : `rgba(255,255,255,${alpha * 0.6})`;
+          ctx.fillStyle = s.gold ? `rgba(245,158,11,${alpha})` : `rgba(255,255,255,${alpha * 0.6})`;
           ctx.fill();
         });
         requestAnimationFrame(drawStars);
       }
       drawStars();
 
-      /* === EMAILJS — NOTIFICACIÓN SILENCIOSA === */
-      emailjs.init("XXLuwTQsTQLyCMvK7");
+      /* === EMAILJS === */
+      (function() {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+        script.onload = () => emailjs.init("XXLuwTQsTQLyCMvK7");
+        document.head.appendChild(script);
+      })();
 
-      /* === MANEJO INTERACTIVO DEL AUDIO E INTRO === */
+      /* === INTRO === */
       const introScreen = document.getElementById('intro-screen');
       const mainContent = document.getElementById('main-content');
       const mainFooter  = document.getElementById('main-footer');
@@ -488,24 +565,23 @@
       const btnMusica   = document.getElementById('music-control');
 
       introScreen.addEventListener('click', () => {
-
         const hora = new Date().toLocaleString("es-CO", {
           timeZone: "America/Bogota",
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit"
+          weekday: "long", year: "numeric", month: "long",
+          day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"
         });
-        emailjs.send("respuesta_carta", "template_9gizfaa", {
-          hora: "💌 Carol abrió la CARTA NUEVA el " + hora,
-        });
+
+        setTimeout(() => {
+          if (typeof emailjs !== 'undefined') {
+            emailjs.send("respuesta_carta", "template_9gizfaa", {
+              hora: "💌 Carol abrió la CARTA NUEVA el " + hora,
+            });
+          }
+        }, 1500);
 
         musica.play()
           .then(() => { btnMusica.textContent = '⏸'; })
-          .catch(err => { btnMusica.textContent = '▶'; });
+          .catch(() => { btnMusica.textContent = '▶'; });
 
         introScreen.classList.add('hidden');
         mainContent.classList.add('visible');
@@ -528,17 +604,18 @@
             elementoTexto.appendChild(document.createTextNode(textoCarta.charAt(indice)));
           }
           indice++;
-          setTimeout(escribirCarta, 22); /* ← velocidad aumentada */
+          setTimeout(escribirCarta, 22);
         } else {
           setTimeout(() => {
             document.querySelector('.cursor').style.display = 'none';
             document.getElementById('audio-box').classList.add('visible');
-            document.getElementById('respuesta-seccion').classList.add('visible');
+            document.getElementById('chat-seccion').classList.add('visible');
+            cargarMensajes();
           }, 1500);
         }
       }
 
-      /* === CONTROL MANUAL DEL REPRODUCTOR === */
+      /* === CONTROL MÚSICA === */
       btnMusica.addEventListener('click', () => {
         if (musica.paused) {
           musica.play().catch(err => console.log(err));
@@ -549,37 +626,143 @@
         }
       });
 
-      /* === FORMULARIO DE RESPUESTA === */
-      const form       = document.getElementById('form-respuesta');
-      const btnEnviar  = document.getElementById('btn-enviar');
-      const successMsg = document.getElementById('success-msg');
+      /* === CHAT — CARGAR MENSAJES EN TIEMPO REAL === */
+      function cargarMensajes() {
+        onValue(mensajesRef, (snapshot) => {
+          const contenedor = document.getElementById('chat-mensajes');
+          const vacio = document.getElementById('chat-vacio');
+          const data = snapshot.val();
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        btnEnviar.disabled = true;
-        btnEnviar.textContent = 'Enviando...';
+          const estaAbajo = contenedor.scrollHeight - contenedor.scrollTop <= contenedor.clientHeight + 60;
 
-        try {
-          const response = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
+          contenedor.querySelectorAll('.burbuja-wrap').forEach(el => el.remove());
+
+          if (!data) {
+            vacio.style.display = 'block';
+            return;
+          }
+
+          vacio.style.display = 'none';
+
+          Object.values(data).forEach(msg => {
+            const wrap = document.createElement('div');
+            wrap.className = 'burbuja-wrap';
+
+            const burbuja = document.createElement('div');
+            burbuja.className = msg.autor === 'Johan' ? 'burbuja burbuja-johan' : 'burbuja burbuja-carol';
+
+            const nombre = document.createElement('div');
+            nombre.className = 'burbuja-nombre';
+            nombre.textContent = msg.autor === 'Johan' ? 'Johan 💛' : 'Carol 🌸';
+
+            const texto = document.createElement('div');
+            texto.textContent = msg.texto;
+
+            const hora = document.createElement('div');
+            hora.className = 'burbuja-hora';
+            if (msg.timestamp) {
+              const fecha = new Date(msg.timestamp);
+              hora.textContent = fecha.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+            }
+
+            burbuja.appendChild(nombre);
+            burbuja.appendChild(texto);
+            burbuja.appendChild(hora);
+            wrap.appendChild(burbuja);
+            contenedor.appendChild(wrap);
           });
 
-          if (response.ok) {
-            form.style.display = 'none';
-            successMsg.classList.add('visible');
-          } else {
-            btnEnviar.disabled = false;
-            btnEnviar.textContent = 'Enviar mensaje ✦';
-            alert('Hubo un problema al enviar. Intenta de nuevo.');
+          if (estaAbajo) {
+            contenedor.scrollTop = contenedor.scrollHeight;
           }
+        });
+      }
+
+      /* === ENVIAR MENSAJE (Carol) === */
+      const chatInput = document.getElementById('chat-input');
+      const chatSendBtn = document.getElementById('chat-send-btn');
+
+      async function enviarMensajeCarol() {
+        const texto = chatInput.value.trim();
+        if (!texto) return;
+
+        chatSendBtn.disabled = true;
+        chatInput.value = '';
+        chatInput.style.height = '44px';
+
+        try {
+          await push(mensajesRef, {
+            autor: 'Carol',
+            texto: texto,
+            timestamp: Date.now()
+          });
+
+          setTimeout(() => {
+            if (typeof emailjs !== 'undefined') {
+              emailjs.send("respuesta_carta", "template_9gizfaa", {
+                hora: "💌 Carol te escribió: \"" + texto + "\"",
+              });
+            }
+          }, 500);
+
         } catch (err) {
-          btnEnviar.disabled = false;
-          btnEnviar.textContent = 'Enviar mensaje ✦';
-          alert('Hubo un problema al enviar. Intenta de nuevo.');
+          console.error(err);
+        }
+
+        chatSendBtn.disabled = false;
+      }
+
+      chatSendBtn.addEventListener('click', enviarMensajeCarol);
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          enviarMensajeCarol();
         }
       });
+
+      chatInput.addEventListener('input', () => {
+        chatInput.style.height = '44px';
+        chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
+      });
+
+      /* === PANEL SECRETO JOHAN (clic 5 veces en ✦) === */
+      const johanTriggerBtn = document.getElementById('johan-trigger-btn');
+      const johanPanel = document.getElementById('johan-panel');
+      let clicksJohan = 0;
+
+      johanTriggerBtn.addEventListener('click', () => {
+        clicksJohan++;
+        if (clicksJohan >= 5) {
+          johanPanel.classList.toggle('visible');
+          clicksJohan = 0;
+        }
+      });
+
+      /* === ENVIAR RESPUESTA (Johan) === */
+      const johanInput = document.getElementById('johan-input');
+      const johanSendBtn = document.getElementById('johan-send-btn');
+
+      johanSendBtn.addEventListener('click', async () => {
+        const texto = johanInput.value.trim();
+        if (!texto) return;
+
+        johanSendBtn.disabled = true;
+        johanInput.value = '';
+
+        try {
+          await push(mensajesRef, {
+            autor: 'Johan',
+            texto: texto,
+            timestamp: Date.now()
+          });
+        } catch (err) {
+          console.error(err);
+        }
+
+        johanSendBtn.textContent = '¡Enviado! ✦';
+        setTimeout(() => { johanSendBtn.textContent = 'Enviar ✦'; johanSendBtn.disabled = false; }, 2000);
+      });
+
     </script>
   </body>
 </html>

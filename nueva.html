@@ -256,9 +256,30 @@
         border-top: 1px solid rgba(245,158,11,0.1);
         padding: 14px 16px;
         display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .chat-input-row {
+        display: flex;
         gap: 10px;
         align-items: flex-end;
       }
+
+      .chat-nombre-input {
+        width: 100%;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(245,158,11,0.15);
+        border-radius: 12px;
+        padding: 8px 14px;
+        color: #f1f5f9;
+        font-size: 0.82rem;
+        font-family: 'Inter', sans-serif;
+        transition: border-color 0.2s;
+      }
+
+      .chat-nombre-input:focus { outline: none; border-color: rgba(245,158,11,0.4); }
+      .chat-nombre-input::placeholder { color: #4a3f2f; }
 
       .chat-input {
         flex: 1;
@@ -470,8 +491,11 @@
           </div>
 
           <div class="chat-input-area">
-            <textarea class="chat-input" id="chat-input" placeholder="Escríbeme lo que quieras..." rows="1"></textarea>
-            <button class="chat-send-btn" id="chat-send-btn" title="Enviar">➤</button>
+            <input class="chat-nombre-input" type="text" id="chat-nombre" placeholder="Tu nombre..." maxlength="30" />
+            <div class="chat-input-row">
+              <textarea class="chat-input" id="chat-input" placeholder="Escríbeme lo que quieras..." rows="1"></textarea>
+              <button class="chat-send-btn" id="chat-send-btn" title="Enviar">➤</button>
+            </div>
           </div>
         </div>
 
@@ -634,7 +658,6 @@
           const data = snapshot.val();
 
           const estaAbajo = contenedor.scrollHeight - contenedor.scrollTop <= contenedor.clientHeight + 60;
-
           contenedor.querySelectorAll('.burbuja-wrap').forEach(el => el.remove());
 
           if (!data) {
@@ -653,7 +676,7 @@
 
             const nombre = document.createElement('div');
             nombre.className = 'burbuja-nombre';
-            nombre.textContent = msg.autor === 'Johan' ? 'Johan 💛' : 'Carol 🌸';
+            nombre.textContent = msg.autor === 'Johan' ? 'Johan 💛' : msg.autor + ' 🌸';
 
             const texto = document.createElement('div');
             texto.textContent = msg.texto;
@@ -678,12 +701,14 @@
         });
       }
 
-      /* === ENVIAR MENSAJE (Carol) === */
+      /* === ENVIAR MENSAJE === */
       const chatInput = document.getElementById('chat-input');
       const chatSendBtn = document.getElementById('chat-send-btn');
 
       async function enviarMensajeCarol() {
         const texto = chatInput.value.trim();
+        const nombreInput = document.getElementById('chat-nombre');
+        const nombre = nombreInput.value.trim() || 'Anónimo';
         if (!texto) return;
 
         chatSendBtn.disabled = true;
@@ -692,7 +717,7 @@
 
         try {
           await push(mensajesRef, {
-            autor: 'Carol',
+            autor: nombre,
             texto: texto,
             timestamp: Date.now()
           });
@@ -700,7 +725,7 @@
           setTimeout(() => {
             if (typeof emailjs !== 'undefined') {
               emailjs.send("respuesta_carta", "template_9gizfaa", {
-                hora: "💌 Carol te escribió: \"" + texto + "\"",
+                hora: "💌 " + nombre + " te escribió: \"" + texto + "\"",
               });
             }
           }, 500);
